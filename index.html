@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Booking</title>
+    <style>
+        :root {
+            --primary: #2f7df6;
+            --primary-dark: #1d5fb5;
+            --bg: #f5f9ff;
+            --text: #1f2d3d;
+            --muted: #5f6f82;
+            --card: #ffffff;
+            --border: #dfe9f7;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #eef6ff 0%, #f9fcff 100%);
+            color: var(--text);
+        }
+
+        .container {
+            width: min(1120px, 92%);
+            margin: 0 auto;
+        }
+
+        header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
+
+        .brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .nav-links a {
+            margin-left: 18px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 30px;
+            padding: 60px 0 40px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin: 0 0 14px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+        }
+
+        .hero-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 14px 45px rgba(47, 125, 246, 0.12);
+        }
+
+        .hero-card h3 { margin-top: 0; }
+
+        .hero-card ul { padding-left: 18px; color: var(--muted); }
+
+        .section {
+            padding: 24px 0 48px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .doctor-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 18px;
+            box-shadow: 0 8px 24px rgba(15, 30, 53, 0.05);
+        }
+
+        .doctor-card h4 { margin: 8px 0 6px; }
+        .doctor-card .role { color: var(--primary); font-weight: 700; }
+        .doctor-card p { color: var(--muted); margin: 8px 0 0; }
+
+        .booking {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        form {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 12px;
+        }
+
+        label {
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            padding: 11px 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        textarea { min-height: 90px; resize: vertical; }
+
+        .submit {
+            width: 100%;
+            margin-top: 8px;
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .message {
+            margin-top: 14px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #e7f8eb;
+            color: #206b34;
+            display: none;
+        }
+
+        .info-panel {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px 0 40px;
+            color: var(--muted);
+        }
+
+        @media (max-width: 860px) {
+            .hero, .booking, .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="brand">MediCare Booking</div>
+            <nav class="nav-links">
+                <a href="#doctors">Doctors</a>
+                <a href="#book">Book</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div>
+                <h1>Book your doctor appointment in minutes.</h1>
+                <p>Choose a specialist, pick a time, and get ready for a smooth visit. Our simple booking system helps you save time and stay organized.</p>
+                <div class="btns">
+                    <a href="#book" class="btn btn-primary">Book Now</a>
+                    <a href="#doctors" class="btn btn-secondary">View Doctors</a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <h3>Why patients love us</h3>
+                <ul>
+                    <li>Fast online booking</li>
+                    <li>Verified doctors</li>
+                    <li>Flexible appointment slots</li>
+                    <li>Secure and private</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="doctors">
+            <div class="section-title">
+                <h2>Our Specialists</h2>
+                <span>Available today</span>
+            </div>
+            <div class="cards">
+                <div class="doctor-card">
+                    <div class="role">Cardiologist</div>
+                    <h4>Dr. Ayesha Khan</h4>
+                    <p>15+ years of experience in heart care and prevention.</p>
+                </div>
+                <div class="doctor-card">
+                    <div class="role">Dermatologist</div>
+                    <h4>Dr. Ali Raza</h4>
+                    <p>Specialist in skin treatments, acne care, and allergy issues.</p>
+                </div>
+                <div class="doctor-card">
+                    <div class="role">Pediatrician</div>
+                    <h4>Dr. Sana Malik</h4>
+                    <p>Trusted care for children with gentle and friendly support.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section booking" id="book">
+            <div class="info-panel">
+                <h3>Book an Appointment</h3>
+                <p>Fill out the form and our team will confirm your appointment shortly.</p>
+                <p><strong>Call:</strong> +92 300 1234567</p>
+                <p><strong>Hours:</strong> Mon-Sat, 8:00 AM - 8:00 PM</p>
+            </div>
+
+            <form id="bookingForm">
+                <div class="field">
+                    <label for="name">Patient Name</label>
+                    <input id="name" name="name" placeholder="Your name" required />
+                </div>
+                <div class="field">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" name="phone" placeholder="03xx-xxxxxxx" required />
+                </div>
+                <div class="field">
+                    <label for="doctor">Select Doctor</label>
+                    <select id="doctor" name="doctor" required>
+                        <option value="">Choose a doctor</option>
+                        <option>Dr. Ayesha Khan</option>
+                        <option>Dr. Ali Raza</option>
+                        <option>Dr. Sana Malik</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="date">Preferred Date</label>
+                    <input id="date" name="date" type="date" required />
+                </div>
+                <div class="field">
+                    <label for="time">Preferred Time</label>
+                    <input id="time" name="time" type="time" required />
+                </div>
+                <div class="field">
+                    <label for="notes">Reason for Visit</label>
+                    <textarea id="notes" name="notes" placeholder="Briefly describe your concern"></textarea>
+                </div>
+                <button class="btn submit" type="submit">Confirm Booking</button>
+                <div class="message" id="message"></div>
+            </form>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">© 2026 MediCare Booking. Trusted care, simple booking.</div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('bookingForm');
+        const message = document.getElementById('message');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const doctor = document.getElementById('doctor').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            message.style.display = 'block';
+            message.textContent = `Thank you, ${name}! Your appointment with ${doctor} on ${date} at ${time} has been requested.`;
+            form.reset();
+        });
+    </script>
+</body>
+</html>

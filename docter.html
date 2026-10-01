@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="docter.css">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <nav class="navbar">
+        <h3 style="color: blue;"> Madicare booking</h3>
+        <ul class="nav-links">
+            <li><a href="#doctors">Docter</a></li>
+            <li><a href="#book">Booking</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ================= hero section ========= -->
+    <div class="hero" style="background-color: rgb(196, 211, 231);">
+
+        <div class="center">
+            <div class="leftsection">
+                <h1>Book your doctor appointment in minutes.</h1>
+                <p>Choose a specialist, pick a time, and get ready for a smooth visit. Our simple booking system helps
+                    you save time and stay organized.</p>
+                <div class="button-container">
+                    <button class="btn" style="color: aliceblue;">Book Now</button>
+                    <button class="btn" style="background-color: white; color: blue;">View Doctors</button>
+                </div>
+            </div>
+            <div class="rightsection">
+                <h2>Why patients love us</h2>
+                <ul>
+                    <li>Fast online booking</li>
+                    <li>Verified doctors</li>
+                    <li>Flexible appointment slot</li>
+                    <li>Secure and private</li>
+            </div>
+
+        </div>
+
+        <section id="doctors">
+        <div class="specialist">
+            <p style="font-weight: bold; font-size: 20px;">Our Specialists</p>
+            <p>Available today</p>
+        </div>
+
+        <div class="cards">
+            <div class="doctor-card">
+                <div class="role">Cardiologist</div>
+                <h4>Dr. Ayesha Khan</h4>
+                <p>15+ years of experience in heart care and prevention.</p>
+            </div>
+            <div class="doctor-card">
+                <div class="role">Dermatologist</div>
+                <h4>Dr. Ali Raza</h4>
+                <p>Specialist in skin treatments, acne care, and allergy issues.</p>
+            </div>
+            <div class="doctor-card">
+                <div class="role">Pediatrician</div>
+                <h4>Dr. Sana Malik</h4>
+                <p>Trusted care for children with gentle and friendly support.</p>
+            </div>
+        </div>
+        </section>
+
+        <!-- =========  last section =========== -->
+        <section class="section-booking" id="book">
+            <div class="info-panel">
+                <h3>Book an Appointment</h3>
+                <p>Fill out the form and our team will confirm your appointment shortly.</p>
+                <p><strong>Call:</strong> +92 300 1234567</p>
+                <p><strong>Hours:</strong> Mon-Sat, 8:00 AM - 8:00 PM</p>
+            </div>
+
+            <form id="bookingForm">
+                <div class="field">
+                    <label for="name">Patient Name</label>
+                    <input id="name" name="name" placeholder="Your name" required />
+                </div>
+                <div class="field">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" name="phone" placeholder="03xx-xxxxxxx" required />
+                </div>
+                <div class="field">
+                    <label for="doctor">Select Doctor</label>
+                    <select id="doctor" name="doctor" required>
+                        <option value="">Choose a doctor</option>
+                        <option>Dr. Ayesha Khan</option>
+                        <option>Dr. Ali Raza</option>
+                        <option>Dr. Sana Malik</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="date">Preferred Date</label>
+                    <input id="date" name="date" type="date" required />
+                </div>
+                <div class="field">
+                    <label for="time">Preferred Time</label>
+                    <input id="time" name="time" type="time" required />
+                </div>
+                <div class="field">
+                    <label for="notes">Reason for Visit</label>
+                    <textarea id="notes" name="notes" placeholder="Briefly describe your concern"></textarea>
+                </div>
+                <button class="btn submit" type="submit">Confirm Booking</button>
+                <div class="message" id="message"></div>
+            </form>
+        </section>
+
+    </div>
